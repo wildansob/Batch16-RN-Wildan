@@ -1,0 +1,18 @@
+
+.box {
+    color: tomato;
+    width: 120px;
+    height: 120px;
+    background-color: purple;
+    overflow: auto;
+    z-index: 8;
+    margin: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    background-color: grey;
+    height: 400px;
+}

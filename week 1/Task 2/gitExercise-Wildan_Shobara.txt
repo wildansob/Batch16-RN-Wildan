@@ -1,0 +1,36 @@
+1. Command Untuk memulai Working directory baru menggunakan ?
+
+Answer:
+git init
+
+2. Jelaskan dengan singkat flow untuk melakukan push ke Repository
+
+Answer :
+- git status (memastikan apakah ada sebuah perubahan di salah satu / beberapa file)
+   - git add . (memindahkan seluruh perubahan ke dalam stagging area)
+   - git status ( cek kembali apakah semuanya sudah siap untuk di commit)
+   - git commit -m "" (melakukan commit)
+   - git push origin master ( push ke repository branch master)
+
+3. Apa yang dimaksud dengan branch, dan apa manfaatnya. (base on your opinion)
+
+Answer :
+branch adalah sebuah percabangan repository dari master/main .
+    manfaat menggunakan branch adalah untuk menjaga main / master project kita tidak mengalami
+    error kalau ternyata tambahan fitur / perubahan yg di lakukan di branch repository mengalami
+    error. Dan juga sebagai checkpoint untuk kembali ke default project kita klo kita tidak jadi 
+    mengimplementasikan fitur baru / perubahan pada project kita.
+
+4. Bagaimana cara untuk kembali ke commit sebelumnya.
+
+Answer:
+- git log ( mencari code commit sebelumnya )
+   - git check out *masukkan code commit tujuan* (pindah ke commit tujuan)
+   - git switch -c newMaster ( rename commitenya dengan nama apapun)
+   - git branch -D master (Hapus master yang lama)
+
+5. Kapan sebaik nya kita menggunakan remote, kapan sebaiknya kita menggunakan clone. (Base on your opinion)
+
+Answer:
+- git remote digunakan saat repository online kita dalam keadaaan kosong
+- git clone digunakan saat kita sudah memiliki repository online
