@@ -1,23 +1,20 @@
-import React, {useEffect} from "react";
-import {View } from "react-native";
-import SplashScreen from "react-native-splash-screen";
-import Button from "./src/component/Button";
-import Poppins from "./src/component/Poppins";
-
+import React, {useEffect} from 'react';
+import {StatusBar} from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
+import { COLOR } from './src/config/color';
+import Router from './src/router';
+import {Provider} from 'react-redux'
+import { store } from './src/store/store';
 const App = () => {
-  useEffect(()=> {
+  useEffect(() => {
     SplashScreen.hide();
   }, []);
-  
-  return (
-    <View>
-      <Poppins type="Bold" size={24} color="#ccc">
-        Movies
-      </Poppins>
-      <Poppins color="red">Wildan Shobara</Poppins>
 
-      <Button title='Sign in action is asctivated hahahha'/>
-      </View>
+  return (
+    <Provider store={store}>
+      <StatusBar barStyle="light-content" backgroundColor={COLOR.black} />
+      <Router />
+    </Provider>
   );
 };
 
