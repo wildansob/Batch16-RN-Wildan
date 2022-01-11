@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {View, Text} from 'react-native';
 import Poppins from '../Poppins';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -10,24 +10,24 @@ import {FlatList, TouchableOpacity} from 'react-native-gesture-handler';
 import {styles} from './style';
 import {ListItem} from 'react-native-elements/dist/list/ListItem';
 import axios from 'axios';
-import { NavigationContainer } from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 
-export default function CardMovie({title, data, navigation}) {
+export default function CardMovie({title, data = [], navigation}) {
   //function send data pakai navigation
   // const onClickMovie = data => {
   //   console.log(data);
   //   navigation.navigate('DetailMovie', {
   //     data,
   //   })
-  // } 
-  const getByDetails = async id => {
-    navigation.navigate('Movie Detail')
-    const res = await axios ({
-      method : 'GET',
-      url : `${URL.baseUrl}/movie/${id}`,
-      headers : {authorization : `Bearer ${URL.token}`},
-    })
-  }
+  // }
+  const getByDetails = data => {
+    navigation.navigate('Movie Detail', {data});
+    // const res = await axios ({
+    //   method : 'GET',
+    //   url : `${URL.baseUrl}/movie/${id}`,
+    //   headers : {authorization : `Bearer ${URL.token}`},
+    // })
+  };
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -44,35 +44,34 @@ export default function CardMovie({title, data, navigation}) {
         </TouchableOpacity>
       </View>
       <FlatList
-      data={data}
-      horizontal
-      keyExtractor={item => item.id}
-      renderItem={({item}) => {
-        return (
-          <TouchableOpacity
-          onPress={() => getByDetails(item.id)}
-          style={styles.content}>
-        <FastImage
-          source={{
-            uri: `${URL.imageUrl.sd}${item.poster_path}`,
-          }}
-          style={{
-            height: moderateScale(120),
-            width: moderateScale(80),
-          }}
-          resizeMode="contain"
-        />
-        <Poppins
-          size={12}
-          align="center"
-          style={{width: moderateScale(80), marginTop: moderateScale(8)}}>
-          {item.original_title}
-        </Poppins>
-      </TouchableOpacity>
-        )
-      }}
-      />     
+        data={data}
+        horizontal
+        keyExtractor={item => item.id}
+        renderItem={({item}) => {
+          return (
+            <TouchableOpacity
+              onPress={() => getByDetails(item)}
+              style={styles.content}>
+              <FastImage
+                source={{
+                  uri: `${URL.imageUrl.sd}${item.poster_path}`,
+                }}
+                style={{
+                  height: moderateScale(120),
+                  width: moderateScale(80),
+                }}
+                resizeMode="contain"
+              />
+              <Poppins
+                size={12}
+                align="center"
+                style={{width: moderateScale(80), marginTop: moderateScale(8)}}>
+                {item.original_title}
+              </Poppins>
+            </TouchableOpacity>
+          );
+        }}
+      />
     </View>
   );
 }
-
